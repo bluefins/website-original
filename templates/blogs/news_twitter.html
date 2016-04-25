@@ -1,0 +1,98 @@
+<#set:blog.selectedTag#>all<#/set#>
+<#loop:breadCrumbTrail#>
+	<#if:loop.breadCrumbTrail.count:eq:2#>
+	<#if:breadCrumbTrail.pageID:eq:5173#><#set:blog.selectedTag#>comp<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5169#><#set:blog.selectedTag#>lessons<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5170#><#set:blog.selectedTag#>masters<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5171#><#set:blog.selectedTag#>waterpolo<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5172#><#set:blog.selectedTag#>disability<#/set#><#/if#>
+    <#/if#>
+<#/loop#>
+<div class="blogNews">
+	<div class="inner">
+    <div class="left">
+    <h4>{blog.blogTitle}</h4>
+    <div class="blogNav backgroundBlog_{blog.selectedTag}">
+			<ul>
+				<#loop:blog.items#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>	
+					<li><a href="{blog.items.href}"  onmouseover="return showBlogItem_{blog.blogID} ({blog.items.blogItemID})" <#if:loop.blog.items.count:eq:1#>class="over"<#/if#> id="blogButton_{blog.blogID}_{blog.items.blogItemID}">{loop.blog.items.count}</a></li>
+				<#/if#>
+                <#/loop#>
+			</ul>
+		</div>
+		<div class="blogBlockContainer">
+			<#loop:blog.items#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>	
+				<div class="blogBlock backgroundBlog_{blog.selectedTag}" id="blogBlock_{blog.blogID}_{blog.items.blogItemID}">
+                <div class="text"><h3>{blog.items.itemTitle} {blog.items.blogItemID}</h3>
+					{blog.items.itemShortDescription}<br />
+
+					{site.text.blogButtonText.editButton}{site.text.blogButtonText.content}
+                    </div>
+					<span class="image">
+						<#loop:blog.items.images.news:1#>
+							<img src='{blog.items.images.news.src}' alt="{blog.items.itemTitle}" border="0" />
+						<#/loop#>
+					</span>
+					
+                  
+				</div>
+                <#/if#>	
+		   <#/loop#>
+            
+		</div>
+        
+        </div>
+        <div class="right">
+        <h4>Twitter</h4>
+        <div class="tweet">
+        <div class="twitterTitle">Tweets</div>
+                	<a class="twitter-timeline" href="https://twitter.com/hctcreative" data-widget-id="332086157858971648" data-link-color="#018cf3" data-chrome="noheader nofooter noborders transparent" data-tweet-limit="1" data-theme="dark"></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a href="https://twitter.com/intent/user?screen_name=hctcreative" class="follow twitter_{blog.selectedTag}"><span>Follow @Bluefins</span></a>
+					</div>
+         <div class="cornerShadow"></div>           
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+	var itemIDs_{blog.blogID} = new Array();
+	<#loop:blog.items#>
+		itemIDs_{blog.blogID}.push ({blog.items.blogItemID});
+	<#/loop#>
+	function showBlogItem_{blog.blogID} (itemID){
+		for (i=0;i<itemIDs_{blog.blogID}.length;i++) {
+			if (itemIDs_{blog.blogID}[i]==itemID) {
+				document.getElementById("blogBlock_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).style.display="block";
+				document.getElementById("blogButton_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).className="over";		
+			} else {
+				document.getElementById("blogBlock_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).style.display="none";
+				document.getElementById("blogButton_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).className="";			
+			}
+		}
+		return false;		
+	}
+</script>

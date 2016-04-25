@@ -1,0 +1,51 @@
+
+<#set:blog.selectedTag#>all<#/set#>
+<#loop:breadCrumbTrail#>
+	<#if:loop.breadCrumbTrail.count:eq:2#>
+	<#if:breadCrumbTrail.pageID:eq:5173#><#set:blog.selectedTag#>comp<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5169#><#set:blog.selectedTag#>lessons<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5170#><#set:blog.selectedTag#>masters<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5171#><#set:blog.selectedTag#>waterpolo<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5172#><#set:blog.selectedTag#>disability<#/set#><#/if#>
+    <#/if#>
+<#/loop#>
+
+<div class="blogHealth">
+	<div class="inner">
+    <h4>{blog.blogTitle}</h4>
+    	<#loop:blog.items:2#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>	
+        <a href="{blog.items.href}">
+        	<span class="article backgroundBlog_{blog.selectedTag}">
+            <#if:blog.items.daysSinceDisplayDate:lt:10#><div class="newFlag"></div><#/if#>
+            	<span class="artPad">
+					<span class="image">
+                    	<#loop:blog.items.images.health:1#>
+     						<img src='{blog.items.images.health.src}' alt="{blog.items.itemTitle}" border="0" />
+    					<#/loop#>
+                    </span>
+                    <span class="text">
+                    	<h3>{blog.items.itemTitle}</h3>
+                        {blog.items.itemShortDescription:160:dots}
+                    </span>
+                    <span class="clear"></span>
+                     <span class="button">Read</span>    
+                </span>
+            </span>
+            </a>
+ 		<#/if#>
+	<#/loop#>
+        <div class="clear"></div>
+    </div>
+    </div>
+   

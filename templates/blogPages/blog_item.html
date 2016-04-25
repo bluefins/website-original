@@ -1,0 +1,80 @@
+<#include:../includes/top.html#>
+<#include:../includes/header.html#>
+<div class="subBody">
+<div class="inner">
+
+<div class="blogTopContent">
+<div class="blogLeft">
+	 <#loop:breadCrumbTrail#>
+     <#if:loop.breadCrumbTrail.count:eq:2#>
+     <span class="title">{breadCrumbTrail.pageName}</span>
+     <#/if#>
+     <#/loop#>
+</div>
+<div class="blogRight">
+	<div class="breadcrumbContainer">
+    	<ul id="breadcrumb">
+			<#loop:breadCrumbTrail#>
+				<#if:loop.breadCrumbTrail.count:eq:1#>
+					<li><a href="{breadCrumbTrail.href}" class="home">Home</a></li>
+				<#else#>
+				<#if:loop.breadCrumbTrail.count:eq:loop.breadCrumbTrail.total#>
+					<li>&nbsp;>&nbsp;{breadCrumbTrail.pageName}</li>
+				<#else#>
+					<li>&nbsp;>&nbsp;<a href="{breadCrumbTrail.href}">{breadCrumbTrail.pageName}</a></li>
+		    	<#/if#>
+				<#/if#>
+			<#/loop#>
+		</ul>
+        <div class="clear"></div>
+    </div>
+	<div class="socialMedia">
+		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+		<span class='st_twitter_hcount' displayText='Tweet'></span>
+		<span class='st_facebook_hcount' displayText='Facebook'></span>
+		<span class='st_sharethis_hcount' displayText='Sharethis'></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<#include:../includes/left_nav.html#>
+    	<div class="right">
+       <#if:blog.item.imageCount:gt:0#>
+            <div class="blogPageImage <#loop:breadCrumbTrail#><#if:loop.breadCrumbTrail.count:eq:2#><#if:breadCrumbTrail.pageID:eq:5173#>image_comp<#/if#><#if:breadCrumbTrail.pageID:eq:5169#>image_lessons<#/if#><#if:breadCrumbTrail.pageID:eq:5170#>image_masters<#/if#><#if:breadCrumbTrail.pageID:eq:5171#>image_waterpolo<#/if#><#if:breadCrumbTrail.pageID:eq:5172#>image_disability<#/if#><#if:breadCrumbTrail.pageID:eq:5188#>image_comp<#/if#><#/if#><#/loop#>">
+				                           
+				<div class="image">
+					<div class="imageSlider" id="imageSlider_item">
+						<#loop:blog.item.images.blogMain#><img src="{blog.item.images.blogMain.src}" alt="{blog.item.images.blogMain.title}" /><#/loop#>
+					</div>
+				</div>
+                <div class="title">
+					<#loop:blog.item.images.blogMain#><div <#if:loop.blog.item.images.blogMain.count:gt:1#>style="display:none"<#/if#> id="imageTitle_{loop.blog.item.images.blogMain.count}">{blog.item.images.blogMain.name}</div><#/loop#>
+				</div>
+				<#if:blog.item.imageCount:gt:1#>
+					<a href="#" onclick="return slider_item.goPrev()" class="blogLeftSlide"></a>
+					<a href="#" onclick="return slider_item.goNext()" class="blogRightSlide"></a>
+					<script type="text/javascript">
+						var slider_item = new initSlider({blog.item.imageCount}, 260, document.getElementById("imageSlider_item"), 8);
+						slider_item.start = function(){
+							document.getElementById("imageTitle_"+slider_item.currentSlide).style.display="none";
+						}
+						slider_item.end = function(){
+							document.getElementById("imageTitle_"+slider_item.currentSlide).style.display="block";
+						}
+					</script>
+				<#/if#>
+            </div>
+            <#/if#>
+        	<div class="blogPageContent">
+            <h1>{blog.item.itemTitle}</h1>
+            <h3>{blog.item.itemStrapline}</h3>
+            
+            {blog.item.itemContent}</div>
+   		</div>
+    	<div class="clear"></div>
+</div>
+</div>
+<#include:../includes/footer.html#>
+<#include:../includes/bottom.html#>

@@ -1,0 +1,27 @@
+<div id="blogLight">
+	<#loop:blog.items#>
+	<div class="blogLoop">
+   	  <div class="imageFloat">
+            	<#loop:blog.items.images.thumb#>
+	    		<div class="blogImage"><img src='{blog.items.images.thumb.src}' alt="{blog.items.itemTitle}" border="0"/>
+                <#if:blog.items.images.thumb.name:neq:blank#><div class="imageDescription">{blog.items.images.thumb.name}</div><#/if#>
+                </div>
+                <#/loop#>
+                <div class="clear"></div> 
+      </div> <div class="share">
+      	<span class='st_sharethis_hcount' displayText='ShareThis'></span>
+		</div> 
+              <span class="blogTitle">{blog.items.itemTitle}</span>
+              <br /><br />
+
+
+{blog.items.itemContent:300:dots}&nbsp;&nbsp;<a href="{blog.items.href}" class="colour_{blog.blogID}">more</a>
+<div class="date colour_{blog.blogID}">Posted {blog.items.displayDate}</div>
+              <div class="blogPad"></div>
+      			
+                
+                
+                <div class="clear"></div>
+			</div>
+ 		<#/loop#>
+</div>

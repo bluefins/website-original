@@ -1,0 +1,164 @@
+	{form.top}
+	<table width="835" cellpadding="0" cellspacing="0">
+<tr><td width="48%" valign="top">
+			<table cellspacing="0" class="formtable">
+				<#loop:form.fields#>
+					<#if:form.fields.fieldType:eq:TEXT#>
+						<tr>
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+<td>
+								<input type='text' name='{form.fields.name}' value='{form.fields.value}' style="width:{form.fields.width}px;"  class="customFormTextInput<#if:form.fields.error:eq:Y#>_error<#/if#>"/>
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:PASSWORD#>
+						<tr>
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+<td>
+								<input type='password' name='{form.fields.name}' value='{form.fields.value}' style="width:{form.fields.width}px;" class="customFormTextInput<#if:form.fields.error:eq:Y#>_error<#/if#>"/>
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:TEXTAREA#>
+						<tr>
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+			  <td valign="bottom">
+<textarea name='{form.fields.name}' style="width:{form.fields.width}px; height:{form.fields.height}px;"  class="customFormTextInputLarge<#if:form.fields.error:eq:Y#>_error<#/if#>"/>{form.fields.value}</textarea>
+								<#if:form.fields.error:eq:Y#><br />
+<span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+			  </tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:SELECT#>
+						<tr>
+							<td width="140" valign="top">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+			  <td>
+								<select name='{form.fields.name}' class="customFormSelect<#if:form.fields.error:eq:Y#>_error<#/if#>"/>
+									<#loop:form.fields.options#>
+										<option value='{form.fields.options.value}' {form.fields.options.selected}>{form.fields.options.text}</option>
+									<#/loop#>
+								</select>
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:CHECKBOX#>
+						<tr>
+							<td width="140">&nbsp;&nbsp;</td>
+							<td>
+								<input type="checkbox" name='{form.fields.name}' value='Y' {form.fields.checked} />{form.fields.label}
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:RADIO#>
+						<tr>				
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+							<td>
+								<#loop:form.fields.options#>
+									<input name='{form.fields.name}' type="radio" value="{form.fields.options.value}" {form.fields.options.checked}/>
+									{form.fields.options.text} &nbsp;&nbsp;
+								<#/loop#>
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:DATE#>
+						<tr>				
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+							<td>
+								<select name='{form.fields.name}_DAY' class="customFormSelect"/>
+									<#loop:form.fields.days#>
+										<option value='{form.fields.days.value}' {form.fields.days.selected}>{form.fields.days.text}</option>
+									<#/loop#>
+								</select>
+								<select name='{form.fields.name}_MONTH' class="customFormSelect"/>
+									<#loop:form.fields.months#>
+										<option value='{form.fields.months.value}' {form.fields.months.selected}>{form.fields.months.text}</option>
+									<#/loop#>
+								</select>
+								<select name='{form.fields.name}_YEAR' class="customFormSelect"/>
+									<#loop:form.fields.years#>
+										<option value='{form.fields.years.value}' {form.fields.years.selected}>{form.fields.years.text}</option>
+									<#/loop#>
+								</select>
+								<#if:form.fields.showTime:eq:Y#>
+									&nbsp;-&nbsp;
+									<select name='{form.fields.name}_HOUR' class="customFormSelect"/>
+										<#loop:form.fields.hours#>
+											<option value='{form.fields.hours.value}' {form.fields.hours.selected}>{form.fields.hours.text}</option>
+										<#/loop#>
+									</select>
+									<#if:form.fields.showMinutes:eq:Y#>
+									&nbsp;:&nbsp;
+									<select name='{form.fields.name}_MINUTE' class="customFormSelect"/>
+										<#loop:form.fields.minutes#>
+											<option value='{form.fields.minutes.value}' {form.fields.minutes.selected}>{form.fields.minutes.text}</option>
+										<#/loop#>
+									</select>
+									<#/if#>
+								<#/if#>
+								<#if:form.fields.error:eq:Y#><br /><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:IMAGE#>
+						<tr>
+							<td width="140">{form.fields.label} <#if:form.fields.compulsory:eq:Y#>*<#/if#></td>
+							<td>
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<#if:form.fields.preview:neq:blank#><td>{form.fields.preview}</td><td>&nbsp;</td><#/if#>
+										<td>
+											<input type="file" name="{form.fields.name}" /><br />
+											<input type="checkbox" value="Y" name="{form.fields.name}_CLEAR" />Clear
+										</td>
+									</tr>
+								</table>
+								<#if:form.fields.error:eq:Y#><span class="errorText">{form.fields.errorMessage}</span><#/if#>
+							</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:DISPLAY#>
+						<tr>				
+							<td width="140">{form.fields.label}</td>
+							<td>{form.fields.value}</td>
+						</tr>
+					<#/if#>
+					<#if:form.fields.fieldType:eq:DIVIDE#>
+							</table>
+						</td>
+						<td width="2%" valign="top">&nbsp;</td>
+						<td width="48%" valign="top">
+						  <table cellspacing="0" class="formtable">
+					<#/if#>
+				<#/loop#>
+				<#if:form.captcha:eq:Y#>
+					
+					<tr>				
+						<td width="140">{form.captchaLabel} *</td>
+						<td style="padding: 0">
+							<table cellpadding="0" cellspacing="0" border="0" width="100%">
+								<tr>
+									<td width="10%"><span class="captcha">{form.captchaImage}</span></td>
+									<td width="2%">&nbsp;</td>
+									<td width="10%"><input type='text' name='captcha' value='' size="5" maxlength="5"  class="customFormTextInputCap<#if:form.captchaError:eq:Y#>_error<#/if#>"/></td>
+									<td width="78%" align="right"><input type="submit" class="submitButton" value="{form.submitButton}"/></td>
+								</tr>
+							</table>
+							<#if:form.captchaError:eq:Y#><span class="errorText">{form.captchaErrorMessage}</span><#/if#>						</td>
+					</tr>
+				<#else#>
+					<tr><td></td><td><input type="submit" class="submitButton" value="{form.submitButton}"/></td></tr>
+				<#/if#>				
+			</table>
+		</td></td>
+	</table>
+{form.bottom}
+<#if:form.error:eq:Y#>
+	<script>
+		toggleEmailHeader();
+	</script>
+<#/if#>

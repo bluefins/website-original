@@ -1,0 +1,54 @@
+
+<div class="linksTop">
+	<div class="inner">{site.content.linksContentTop}
+    <div class="clear"></div>
+    </div>
+</div>
+<div class="sponsors">
+
+
+
+	<div class="inner">
+    {site.content.sponsorContent}
+    	<div class="clear"></div>
+    </div>
+</div>
+
+<div class="links">
+
+	<div class="inner">
+    {site.content.linksContent}
+    	<div class="clear"></div>
+    </div>
+</div>
+<div class="footer">
+	<div class="inner">
+   
+    <div class="floatContainer">
+    	<div class="strapline">{site.content.footerStrap}</div>
+        <div class="footerLogo"></div>
+        <div class="clear"></div>
+    </div>
+   <div class="break"></div>
+   <div class="footerMap">
+    
+    
+    <#loop:pageStructure.childPages:6#>
+    <div class="column">
+    <a href="{pageStructure.childPages.href}" class="root">{pageStructure.childPages.pageName}</a>
+    	<#loop:pageStructure.childPages.childPages#>
+        	<a href="{pageStructure.childPages.childPages.href}" class="sub">{pageStructure.childPages.childPages.pageName}</a>
+        <#/loop#>
+    </div>
+    <#/loop#>
+    <div class="clear"></div>
+    
+    </div>
+    <div class="copyright">{site.content.copyright}</div>
+    </div>
+</div>
+<div class="legal">
+	<div class="inner">
+    {site.content.footerLegal}
+    </div>
+</div>

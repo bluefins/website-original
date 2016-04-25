@@ -1,0 +1,18 @@
+<#include:../includes/top.html#>
+<#include:../includes/header.html#>
+<div class="subBody">
+<div class="inner">
+ {page.content.area1}
+            <#if:loop.search.total:eq:0#>
+				There are no results for this search
+			<#else#>
+			<#loop:search#>
+				<a href="{search.link}" class=<#if:loop.search.count:mod2:1#>"searchLoop"<#else#>"searchLoopAlt"<#/if#>><strong>{search.pageName}</strong>{search.content}</a><#/loop#>
+			<#/if#>
+			{page.content.bottom}
+            <div class="clear" style="height:17px;"></div>	
+</div>
+
+</div>
+<#include:../includes/footer.html#>
+<#include:../includes/bottom.html#>

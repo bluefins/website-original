@@ -1,0 +1,100 @@
+<#set:blog.selectedTag#>all<#/set#>
+<#loop:breadCrumbTrail#>
+	<#if:loop.breadCrumbTrail.count:eq:2#>
+	<#if:breadCrumbTrail.pageID:eq:5173#><#set:blog.selectedTag#>comp<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5169#><#set:blog.selectedTag#>lessons<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5170#><#set:blog.selectedTag#>masters<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5171#><#set:blog.selectedTag#>waterpolo<#/set#><#/if#>
+	<#if:breadCrumbTrail.pageID:eq:5172#><#set:blog.selectedTag#>disability<#/set#><#/if#>
+    <#/if#>
+<#/loop#>
+<div class="blogNews">
+	<div class="inner">
+     <div class="socialMedia">
+		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+		<span class='st_twitter_hcount' displayText='Tweet'></span>
+		<span class='st_facebook_hcount' displayText='Facebook'></span>
+		<span class='st_googleplus_hcount' displayText='Google +'></span>
+		<div class="clear"></div>
+	</div>
+    <div class="left">
+    <h4>{blog.blogTitle}</h4>
+    <div class="blogNav backgroundBlog_{blog.selectedTag}">
+			
+		</div>
+		<div class="blogBlockContainer">
+			<#loop:blog.items#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>	
+            <a href="{blog.items.href}" class="blogBlock backgroundBlog_{blog.selectedTag}" id="blogBlock_{blog.blogID}_{blog.items.blogItemID}">
+                <div class="text"><h3>{blog.items.itemTitle}</h3>
+					{blog.items.itemShortDescription:200:dots} <span class="readMore">Read</span><br />
+
+					{site.text.blogButtonText.editButton}{site.text.blogButtonText.content}
+                    </div>
+					<span class="image">
+						<#loop:blog.items.images.news:1#>
+							<img src='{blog.items.images.news.src}' alt="{blog.items.itemTitle}" border="0" />
+						<#/loop#>
+					</span>
+					
+                  
+				</a>
+                <#/if#>
+            <#/loop#>
+            
+		</div>
+        <div class="blogBlockContainerSmall">
+        <#loop:blog.items:4#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>	
+        <#if:loop.blog.items.count:gt:1#>
+        <div class="smallBlog smallBlog_{blog.selectedTag}">
+        	<span class="image">
+            <#loop:blog.items.images.newsThumb:1#>
+							<a href="{blog.items.href}"><img src='{blog.items.images.newsThumb.src}' alt="{blog.items.itemTitle}" border="0" /></a> 
+						<#/loop#>
+                        </span>
+            <span class="text"><h3>{blog.items.itemTitle}</h3> - <span class="grey">{blog.items.itemShortDescription:120:dots}</span><span class="read"> <a href="{blog.items.href}" class="smallBlog_{blog.selectedTag}">Read</a></span></span>
+            <div class="clear"></div>
+            </div>
+        <#/if#>
+        <#/if#>
+        <#/loop#>
+        <a href="{blog.defaultPage.href}" class="blogAllLink2 smallBlog_{blog.selectedTag}">More {blog.blogTitle}</a>
+        </div>
+        
+        </div>
+        <div class="right">
+        <h4>Twitter</h4>
+        <div class="tweet">
+        <div class="twitterTitle">Tweets</div>
+                	<a class="twitter-timeline" href="https://twitter.com/BFMasters" data-widget-id="382183520430346242" data-link-color="#018cf3" data-chrome="noheader nofooter noborders transparent" data-tweet-limit="2" data-theme="dark" data-src="false"></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a href="https://twitter.com/intent/user?screen_name=BFMasters" class="follow twitter_{blog.selectedTag}"><span>Follow @BFMasters</span></a>
+					</div>
+                   
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+</div>
+

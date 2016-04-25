@@ -1,0 +1,27 @@
+	<div id="galleryContainerHome">
+    	<div class="imageContainer">
+		<#loop:gallery.images#>				
+			<div id="galleryMain_{gallery.galleryID}_{loop.gallery.images.count}" class="galleryImage" <#if:loop.gallery.images.count:gt:1#>style="display:none;"<#/if#>>
+				<img src="{gallery.images.image}" alt="{gallery.images.imageTitle}" title="{gallery.images.imageTitle}" style="margin-top:{gallery.images.imageOffset}px;" />
+				<div class="galleryDescription">
+					{gallery.images.imageDescription}
+				</div>
+			</div>	
+		<#/loop#>
+        <a href="#" onclick="return transObject_{gallery.galleryID}.goImage(-1, false)" class="galleryLeft" ></a>
+        <a href="#" onclick="return transObject_{gallery.galleryID}.goImage(1, false)" class="galleryRight"></a>
+		</div>
+        <div id="galleryThumbs">
+			<#loop:gallery.images#>
+				<a href="#" onclick="transObject_{gallery.galleryID}.goTrans ({loop.gallery.images.count}); return false;" class="out" id="galleryThumb_{loop.gallery.images.count}">
+					<img src="{gallery.images.thumbnail}" alt="{gallery.images.imageTitle}" title="{gallery.images.imageTitle}" />
+				</a>
+			<#/loop#>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<script type="text/javascript">
+		var transObject_{gallery.galleryID} = new initTrans({gallery.imageCount}, "galleryMain_{gallery.galleryID}_", 8);
+	</script>
+			

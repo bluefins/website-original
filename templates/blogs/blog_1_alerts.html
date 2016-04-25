@@ -1,0 +1,36 @@
+<#set:blog.selectedTag#>all<#/set#>
+<#loop:breadCrumbTrail#>
+    <#if:breadCrumbTrail.pageID:eq:5161#><#set:blog.selectedTag#>home<#/set#><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5173#><#set:blog.selectedTag#>comp<#/set#><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5169#><#set:blog.selectedTag#>lessons<#/set#><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5170#><#set:blog.selectedTag#>masters<#/set#><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5171#><#set:blog.selectedTag#>waterpolo<#/set#><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5172#><#set:blog.selectedTag#>disability<#/set#><#/if#>
+<#/loop#>
+<div class="blogAlerts">
+	<#loop:blog.items#>
+		<#if:blog.selectedTag:eq:all#>
+			<#set:blog.items.show#>Y<#/set#>
+		<#else#>
+			<#set:blog.items.show#>N<#/set#>
+			<#loop:blog.items.tagArray#>
+				<#if:blog.items.tagArray.templateKey:eq:blog.selectedTag#>
+					<#set:blog.items.show#>Y<#/set#>
+				<#/if#>
+			<#/loop#>	
+		<#/if#>
+		<#if:blog.items.show:eq:Y#>			
+			<div class="inner blogStyle_{blog.selectedTag}"> <!-- add classs for blogStyle_all blogStyle_comp blogStyle+masters etc to apply colours -->
+				<a href="{blog.items.href}" class="alertLoop">
+					<span class="image"></span>
+					<span class="text">
+						<h3>{blog.items.itemTitle}</h3>
+						{blog.items.itemShortDescription:100:dots}
+					</span>
+					<span class="clear"></span>
+				</a>
+				<div class="clear"></div>
+			</div>		 
+		<#/if#>
+	<#/loop#>
+</div>

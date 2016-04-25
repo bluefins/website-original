@@ -1,0 +1,46 @@
+<div class="blogGeneric">
+	<div class="inner">
+   <h4>{blog.blogTitle}</h4>
+    <div class="fin"></div>
+		<div class="blogNav">
+			<ul>
+				<#loop:blog.items#>
+					<li class="generic_{blog.items.blogItemID}"> <a href="{blog.items.href}" onmouseover="return showBlogItem_{blog.blogID} ({blog.items.blogItemID})"  onclick="return showBlogItem_{blog.blogID} ({blog.items.blogItemID})"  <#if:loop.blog.items.count:eq:1#>class="over"<#/if#> id="blogButton_{blog.blogID}_{blog.items.blogItemID}">{blog.items.itemTitle}</a></li>
+				<#/loop#>
+			</ul>
+		</div>
+		<div class="blogBlockContainer">
+			<#loop:blog.items#>
+				<a href="{blog.items.href}" class="blogBlock generic_{blog.items.blogItemID}" id="blogBlock_{blog.blogID}_{blog.items.blogItemID}">
+					<span class="image">
+						<#loop:blog.items.images.generic:1#>
+							<img src='{blog.items.images.generic.src}' alt="{blog.items.itemTitle}" border="0" />
+                            <div class="description">{blog.items.images.generic.name}</div>
+						<#/loop#>
+					</span>
+					<h3>{blog.items.itemStrapline}</h3>
+					{blog.items.itemShortDescription}
+					<span class="button">View</span>
+				</a>	
+		   <#/loop#>
+		</div>
+    </div>
+</div>
+<script type="text/javascript">
+	var itemIDs_{blog.blogID} = new Array();
+	<#loop:blog.items#>
+		itemIDs_{blog.blogID}.push ({blog.items.blogItemID});
+	<#/loop#>
+	function showBlogItem_{blog.blogID} (itemID){
+		for (i=0;i<itemIDs_{blog.blogID}.length;i++) {
+			if (itemIDs_{blog.blogID}[i]==itemID) {
+				document.getElementById("blogBlock_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).style.display="block";
+				document.getElementById("blogButton_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).className="over";		
+			} else {
+				document.getElementById("blogBlock_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).style.display="none";
+				document.getElementById("blogButton_{blog.blogID}_"+itemIDs_{blog.blogID}[i]).className="";			
+			}
+		}
+		return false;		
+	}
+</script>

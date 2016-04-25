@@ -1,0 +1,81 @@
+<#if:site.inAdmin:eq:Y#><div class="headerAdmin"><#else#><div class="header"><#/if#>
+	<div class="topBar">
+    	<div class="inner">
+        
+        <div class="topLinks">{site.content.topLinks}</div>
+        <div class="search">
+        <form id="autoSearchForm" name="searchForm" action="{site.searchPage}" method="get" onsubmit="return goAutoSearchArrow()">
+			{site.text.searchStart.editButton}
+			<input id="topSearchField" name="xSearch" type="text" size="15" value="{site.text.searchStart.content}" onfocus="clearDefault('topSearchField')" autocomplete="off" />
+			
+		</form>
+        </div>
+        </div>
+    </div>
+    <div class="navigation">
+    	<div class="inner">
+        
+        <#loop:breadCrumbTrail#>
+	<#if:loop.breadCrumbTrail.count:eq:2#>
+	<#if:breadCrumbTrail.pageID:eq:5173#><a href="#" class="defaultLogo"></a><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5169#><a href="#" class="defaultLogoLessons"></a><#/if#>
+   <#if:breadCrumbTrail.pageID:eq:5170#><a href="#" class="defaultLogoMasters"></a><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5171#><a href="#" class="defaultLogoWaterpolo"></a><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5172#><a href="#" class="defaultLogoDisability"></a><#/if#>
+    <#if:breadCrumbTrail.pageID:eq:5188#><a href="#" class="defaultLogo"></a><#/if#>
+    <#else#>
+    <#if:loop.breadCrumbTrail.count:eq:1#>
+    <a href="#" class="defaultLogo"></a>
+    <#/if#>
+    <#/if#>
+    
+<#/loop#>
+
+       
+         <!-- Navigation -->	
+    <div id="topNav">
+	<ul>
+		
+       
+			<#loop:pageStructure.childPages:6#>
+				<#if:loop.pageStructure.childPages.count:gt:1#>		
+					<li onmouseover="this.className='liOver'" onmouseout="this.className='liOut'" class="liOut">
+						<a href="{pageStructure.childPages.href}" class="topnav_{pageStructure.childPages.pageID} <#if:pageStructure.childPages.over:eq:Y#>over<#else#><#if:pageStructure.childPages.showChildren:eq:Y#>over<#/if#><#/if#>">{pageStructure.childPages.pageName} </a>
+                        
+                        <#if:pageStructure.childPages.childCount:gt:0#>
+								
+									<div class="subNavContainer">
+										 <#loop:pageStructure.childPages.childPages#>
+                                         	<div class="subColumn">
+                                            
+                                            	<a href="{pageStructure.childPages.childPages.href}" class="rootImage"><img src="{pageStructure.childPages.childPages.thumb.src}" title="{pageStructure.childPages.childPages.pageName}" /></a>
+                                                <a href="{pageStructure.childPages.childPages.href}" class="<#if:pageStructure.childPages.childPages.over:eq:Y#>over<#/if#>">{pageStructure.childPages.childPages.pageName}</a>
+                                                
+                                                 <#loop:pageStructure.childPages.childPages.childPages#>
+                                                 	<a href="{pageStructure.childPages.childPages.childPages.href}" class="<#if:pageStructure.childPages.childPages.childPages.over:eq:Y#>over<#/if#>">{pageStructure.childPages.childPages.childPages.pageName} </a>
+                                                 <#/loop#>
+                                         	</div>
+                                         <#/loop#>
+  										 <div class="clear"></div>
+ 
+								
+                                        
+									</div>
+								<#/if#>	
+						
+                        
+                        </li>
+                      
+				<#/if#>
+               
+			<#/loop#>
+           
+		</ul>
+    </div>
+     <!-- Navigation -->
+ 
+        </div>
+    </div>
+    <div class="topStripe"></div>
+</div>
+<div class="topMargin"></div>

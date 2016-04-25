@@ -1,0 +1,66 @@
+<#include:../includes/top.html#>
+<#include:../includes/header.html#>
+<!--{galleryFromID.276.name}-->
+	<#set:thisGallery:galleryFromID.276#>
+	<#loop:thisGallery.images#>				
+		<#if:loop.thisGallery.images.count:eq:1#>
+			<#set:thisGallery.firstImage:thisGallery.images#>
+		<#/if#>
+		<#if:loop.thisGallery.images.count:eq:loop.thisGallery.images.total#>
+			<#set:thisGallery.lastImage:thisGallery.images#>
+		<#/if#>
+	<#/loop#>
+	<div id="slides">
+		<div id="slidesClip">
+			<div id="slidesInner">
+            <div id="slidesInnerButtons">
+			<div class="homeButtonContainer">
+				<ul>
+					<#loop:thisGallery.images#>								
+						<li>
+							<a href="#" id="homeSlideButton{loop.thisGallery.images.count}" onclick="return goHomeSlide({loop.thisGallery.images.count});" <#if:loop.thisGallery.images.count:eq:1#>class="over"<#/if#>></a>
+						</li>
+					<#/loop#>
+				</ul>
+			</div>
+		</div>			
+				<div id="homeSlideContainer">
+					<div id="homeSlideInner">
+						<div class="homeSlider"><img src="{thisGallery.lastImage.image}" alt="{thisGallery.lastImage.title}" /><div class="text">{thisGallery.lastImage.imageDescription}</div></div>
+						<#loop:thisGallery.images#>							
+							<div class="homeSlider" <#if:thisGallery.images.href:neq:blank#>onclick="self.location.href='{thisGallery.images.href}'" style="cursor:pointer"<#/if#>>
+								<img src="{thisGallery.images.image}" alt="{thisGallery.images.title}" />
+								<div class="text">{thisGallery.images.imageDescription}
+                                <div class="title">
+                                	<#if:thisGallery.images.imageTitle:neq:blank#><div class="innerTitle">{thisGallery.images.imageTitle}</div><#/if#>
+                                    
+                                    </div>
+                                </div>
+							</div>
+						<#/loop#>
+						<div class="homeSlider"><img src="{thisGallery.firstImage.image}" alt="{firstImage.title}" /><div class="text">{thisGallery.firstImage.imageDescription}</div></div>
+					</div>
+					<div id="homeSlideCoverLeft"></div>
+					<div id="homeSlideCoverRight"></div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var slideObject = initHomeSlides ({thisGallery.imageCount}, 1002);
+			window.onscroll = function(){
+				var height = 330 - window.pageYOffset;
+				if (height<0){height=0;}
+				document.getElementById("slidesClip").style.height = height+"px";
+				var top = window.pageYOffset / -2;
+				document.getElementById("slidesInner").style.top = (top)+"px";
+			};
+		</script>		
+	</div>
+
+<div class="testBody">
+{page.content.area1}
+
+</div>
+<#include:../includes/footer.html#>
+<#include:../includes/bottom.html#>

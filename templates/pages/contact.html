@@ -1,0 +1,69 @@
+<#include:../includes/top.html#>
+<#include:../includes/header.html#>
+<div class="subBody">
+<div class="inner">
+
+
+<div class="blogTopContent">
+<div class="blogLeft">
+	
+     <span class="title">{page.pageName}</span>
+     
+</div>
+<div class="blogRight">
+	<div class="breadcrumbContainer">
+    	<ul id="breadcrumb">
+			<#loop:breadCrumbTrail#>
+				<#if:loop.breadCrumbTrail.count:eq:1#>
+					<li><a href="{breadCrumbTrail.href}" class="home">Home</a></li>
+				<#else#>
+				<#if:loop.breadCrumbTrail.count:eq:loop.breadCrumbTrail.total#>
+					<li>&nbsp;>&nbsp;{breadCrumbTrail.pageName}</li>
+				<#else#>
+					<li>&nbsp;>&nbsp;<a href="{breadCrumbTrail.href}">{breadCrumbTrail.pageName}</a></li>
+		    	<#/if#>
+				<#/if#>
+			<#/loop#>
+		</ul>
+        <div class="clear"></div>
+    </div>
+	<div class="socialMedia">
+		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+		<span class='st_twitter_hcount' displayText='Tweet'></span>
+		<span class='st_facebook_hcount' displayText='Facebook'></span>
+		<span class='st_googleplus_hcount' displayText='Google +'></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div id="contactLeft">
+				{page.content.main}
+			</div>
+        
+        <div id="contactMap">
+				<div id="contactMapInner"></div>
+				<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1RWj8cVm9pdnOfZqeLnKBvnC-mExQkL0&sensor=false"></script>
+				<script type="text/javascript">
+					function initialize() {
+						var myOptions = {center: new google.maps.LatLng(51.265127, -1.121636),zoom: 15,mapTypeId: google.maps.MapTypeId.ROADMAP, streetViewControl:false};
+						map = new google.maps.Map(document.getElementById("contactMapInner"), myOptions);
+						marker = new google.maps.Marker({position: new google.maps.LatLng(51.265127, -1.121636), map: map});					
+					}
+					initialize();
+				</script>
+			</div>	
+            
+            <div id="contactRight">
+				{page.content.right}
+				
+			</div>		
+        
+    	<div class="clear"></div>
+
+</div>
+
+</div>
+<#include:../includes/footer.html#>
+<#include:../includes/bottom.html#>

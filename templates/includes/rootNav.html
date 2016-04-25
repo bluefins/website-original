@@ -1,0 +1,27 @@
+ <!-- Navigation -->	
+ <div class="homeSub">
+<div class="subNavContainer">
+	<#loop:pageStructure.childPages:6#>
+    	<#if:pageStructure.childPages.over:eq:Y#>
+        
+        
+         <#loop:pageStructure.childPages.childPages#>
+                                         	<div class="subColumn">
+                                            
+                                            	<a href="{pageStructure.childPages.childPages.href}" class="rootImage"><img src="{pageStructure.childPages.childPages.thumb.src}" title="{pageStructure.childPages.childPages.pageName}" /></a>
+                                                <a href="{pageStructure.childPages.childPages.href}" class="<#if:pageStructure.childPages.childPages.over:eq:Y#>over<#/if#>">{pageStructure.childPages.childPages.pageName}</a>
+                                                
+                                                 <#loop:pageStructure.childPages.childPages.childPages#>
+                                                 	<a href="{pageStructure.childPages.childPages.childPages.href}" class="<#if:pageStructure.childPages.childPages.childPages.over:eq:Y#>over<#/if#>">{pageStructure.childPages.childPages.childPages.pageName} </a>
+                                                 <#/loop#>
+                                         	</div>
+                                         <#/loop#>
+  										 <div class="clear"></div>
+        
+        
+        <#/if#>
+    <#/loop#>
+
+
+</div>
+</div>

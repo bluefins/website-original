@@ -1,0 +1,41 @@
+<div class="left">
+<#loop:pageStructure.childPages#>
+<#if:pageStructure.childPages.showChildren:eq:Y#>
+<ul class="<#loop:breadCrumbTrail#><#if:loop.breadCrumbTrail.count:eq:2#><#if:breadCrumbTrail.pageID:eq:5173#>comp<#/if#><#if:breadCrumbTrail.pageID:eq:5169#>lessons<#/if#><#if:breadCrumbTrail.pageID:eq:5170#>masters<#/if#><#if:breadCrumbTrail.pageID:eq:5171#>waterpolo<#/if#><#if:breadCrumbTrail.pageID:eq:5172#>disability<#/if#><#/if#><#/loop#>">
+<li <#if:pageStructure.childPages.over:eq:Y#>class="over"<#/if#>><a href="{pageStructure.childPages.href}">{pageStructure.childPages.pageName}</a></li>
+<#loop:pageStructure.childPages.childPages#>
+		<li <#if:pageStructure.childPages.childPages.showChildren:eq:Y#>class="over"<#/if#> <#if:pageStructure.childPages.childPages.over:eq:Y#>class="over"<#/if#>><a href="{pageStructure.childPages.childPages.href}">{pageStructure.childPages.childPages.pageName}</a>
+        
+      
+        </li>
+		  <#if:pageStructure.childPages.childPages.showChildren:eq:Y#>
+            <ul class="sub">
+			<#loop:pageStructure.childPages.childPages.childPages#>
+				<li><a href="{pageStructure.childPages.childPages.childPages.href}" <#if:pageStructure.childPages.childPages.childPages.over:eq:Y#>class="over"<#/if#>>{pageStructure.childPages.childPages.childPages.pageName}</a></li>
+                
+                <#if:pageStructure.childPages.childPages.childPages.showChildren:eq:Y#>
+                <ul class="subSub">
+                	<#loop:pageStructure.childPages.childPages.childPages.childPages#>
+                    	<li><a href="{pageStructure.childPages.childPages.childPages.childPages.href}" <#if:pageStructure.childPages.childPages.childPages.childPages.over:eq:Y#>class="over"<#/if#>>{pageStructure.childPages.childPages.childPages.childPages.pageName}</a></li>
+                        
+                        <#if:pageStructure.childPages.childPages.childPages.childPages.showChildren:eq:Y#>
+                <ul class="subSubSub">
+                	<#loop:pageStructure.childPages.childPages.childPages.childPages.childPages#>
+                    	<li><a href="{pageStructure.childPages.childPages.childPages.childPages.childPages.href}" <#if:pageStructure.childPages.childPages.childPages.childPages.childPages.over:eq:Y#>class="over"<#/if#>>{pageStructure.childPages.childPages.childPages.childPages.childPages.pageName}</a></li>
+                    <#/loop#>
+                    </ul>
+                <#/if#>
+                        
+                    <#/loop#>
+                    </ul>
+                <#/if#>
+                
+			<#/loop#>
+            </ul>
+			<#/if#>	
+            
+<#/loop#>
+</ul>
+<#/if#>
+<#/loop#>
+</div>

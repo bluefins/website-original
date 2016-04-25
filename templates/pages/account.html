@@ -1,0 +1,160 @@
+<#include:../includes/top.html#>
+<#include:../includes/header.html#>
+<div class="subBody">
+<div class="inner">
+
+
+
+
+<div class="accountArea">
+
+
+<#if:customer.showLogin:eq:Y#>
+					<div>
+						{page.content.customerLogin}
+						<form name="{customer.loginForm.name}" action="{customer.loginForm.action}" method="post">
+							<table <table cellspacing="0" class="customFormTable">
+								<tr>
+									<td colspan="2" valign="top" class="ruleRight">
+										{site.text.loginExistingCustomers.editButton}{site.text.loginExistingCustomers.content}<br /><br />
+										{site.text.customerLoginEmail.editButton}{site.text.customerLoginEmail.content}<br />
+										<input type="text" name="loginEmail" value="{customer.loginForm.loginEmail}" class="customFormTextInput" style="width:240px" /><br /><br />
+										{site.text.customerLoginPassword.editButton}{site.text.customerLoginPassword.content}<br />
+										<input type="password" name="loginPassword" value="{customer.loginForm.loginPpassword}" class="customFormTextInput" style="width:240px"  />
+                                        <br />
+                                        <br />
+
+
+                                        {site.text.secureLoginCaptcha.editButton}{site.text.secureLoginCaptcha.content}<br />
+										<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="padding:0; border:none;">{customer.loginForm.captchaImage}</td>
+												<td style="padding:0; border:none;">&nbsp;</td>
+												<td style="padding:0; border:none;"><input type="captcha" name="captcha" value="" class="customFormTextInput" style="width:60px"  /></td>
+											</tr>
+										</table>
+										<#if:site.inAdmin:eq:Y#>
+											{site.text.secureLoginCaptchaError.editButton}<span class="errorText">{site.text.secureLoginCaptchaError.content}</span>
+										<#else#>
+											<#if:customer.loginForm.captchaError:eq:Y#>
+												{site.text.secureLoginCaptchaError.editButton}<span class="errorText">{site.text.secureLoginCaptchaError.content}</span>
+											<#/if#>
+										<#/if#>
+                                        
+										<#if:site.inAdmin:eq:Y#>
+											<br />{site.text.customerLoginError.editButton}<span class="errorText">{site.text.customerLoginError.content}</span>
+										<#else#>
+											<#if:customer.loginForm.error:eq:Y#>
+												<br />{site.text.customerLoginError.editButton}<span class="errorText">{site.text.customerLoginError.content}</span>
+											<#/if#>
+										<#/if#>									</td>
+									<td width="2%" valign="top">&nbsp;</td>
+									<td width="50%" valign="top">
+										{site.text.loginNewCustomers.editButton}{site.text.loginNewCustomers.content}									</td>
+								</tr>
+								<tr>
+									<td width="25%">{site.text.customerForgottenPasswordLink.editButton}<a href="{customer.forgotPasswordLink}">{site.text.customerForgottenPasswordLink.content}</a></td>
+									<td width="25%" class="ruleRight" align="right">{site.text.customerLoginSubmit.editButton}<input type="submit" value="{site.text.customerLoginSubmit.content}" class="customFormButton"/></td>
+									<td colspan="2" align="right">{site.text.customerCreateAccount.editButton}
+								    <input type="button" class="customFormButton" value="{site.text.customerCreateAccount.content}" onclick="self.location.href='{customer.createAccountLink}'"></td>
+								</tr>
+							</table>
+					  </form>
+					</div>
+				<#/if#>
+				<#if:customer.showForgottenPassword:eq:Y#>
+					<div>
+						{page.content.ForgottenPassword}
+						<form name="{customer.forgotForm.name}" action="{customer.forgotForm.action}" method="post">
+							<table cellspacing="0" class="customFormTable">
+								<tr>
+									<td style="padding-top: 10px">{site.text.customerForgottenEmail.editButton}{site.text.customerForgottenEmail.content}</td>
+								</tr>
+								<tr>
+									<td><input name="forgotEmail" type="text" value="{customer.forgotForm.forgotEmail}" class="customFormTextInputLarge" style="width: 250px;" /></td>
+								</tr>
+								<#if:customer.forgotForm.error:eq:Y#><tr><td>{site.text.customerForgotError.editButton}<span class="errorText">{site.text.customerForgotError.content}</span></td></tr><#/if#>
+								<#if:site.inAdmin:eq:Y#><tr><td>{site.text.customerForgotError.editButton}<span class="errorText">{site.text.customerForgotError.content}</span></td></tr><#/if#>
+								<tr>
+									<td style="padding-bottom: 10px;">{site.text.customerForgottenEmailSubmit.editButton}<input type="submit" value="{site.text.customerForgottenEmailSubmit.content}"  class="customFormButton" /></td>
+								</tr>
+							</table>
+					  </form>	
+					</div>
+				<#/if#>
+				<#if:customer.showForgottenPasswordSuccess:eq:Y#>
+					{page.content.ForgottenPasswordSuccess}
+				<#/if#>
+				<#if:customer.showNewAccount:eq:Y#>
+					<div>{page.content.customerNewAccount}</div>
+				<#/if#>
+				<#if:customer.showHome:eq:Y#>
+					<div>
+						{page.content.customerHome}
+						<table cellspacing="0" class="customFormTable">
+							<tr>
+								<td width="50%" valign="top" class="ruleRight">
+									<table width="100%" cellspacing="0" class="innerTable">
+										<#loop:customer.details.all#>
+											<tr>
+												<td><b>{customer.details.all.label}</b></td>
+												<td width="10">&nbsp;</td>
+												<td align="right">{customer.details.all.value}</td>
+											</tr>
+										<#/loop#>
+									</table>								</td>
+								<td width="2%" valign="top"></td>
+								<td width="50%" valign="top">
+									{site.text.customerHomeDetailsLink.editButton}<a href="{customer.detailsLink}">{site.text.customerHomeDetailsLink.content}</a><br />
+									{site.text.customerHomeLogout.editButton}<a href="{customer.logoutLink}" onclick="trackLogout()">{site.text.customerHomeLogout.content}</a>								</td>
+							</tr>
+						</table>
+					  <br />
+<br />
+
+							 <#if:assetVault.assetCount:neq:0#><table width="100%" border="0" cellspacing="0" cellpadding="0" class="customFormTableDownloads">
+  <tr>
+    <th align="left">My Downloads [{assetVault.assetCount}]</th>
+  </tr>
+  <tr>
+    <td><#loop:assetVault.assets#>
+								<#set:thisAsset:assetVault.assets#>
+								<#set:thisAsset.refreshPage#>Y<#/set#>
+								asdasdas
+							<#/loop#>
+						<div class="clear"></div></td>
+  </tr>
+  <tr>
+    <td>
+    <#if:assetVault.assetCount:gt:0#>
+    	<a href="{assetVault.zipHref}" class="downloadAllButton" target="assetIframe">Download all</a>
+    <#/if#>
+    </td>
+  </tr>
+  <tr>
+    <td height="2"></td>
+  </tr>
+</table><#/if#>
+
+				
+               
+			  </div>
+				<#/if#>
+				<#if:customer.showDetails:eq:Y#>
+					<div>{page.content.customerDetails}</div>
+				<#/if#>
+                
+                
+              
+              
+           
+
+
+</div>
+<div class="bottomPadding"></div>
+
+</div>
+
+</div>
+<#include:../includes/footer.html#>
+<#include:../includes/bottom.html#>

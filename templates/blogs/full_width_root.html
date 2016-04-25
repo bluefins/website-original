@@ -1,0 +1,17 @@
+
+	<div class="blogTitle"><h1>{blog.blogTitle}</h1></div>
+    	<#loop:blog.items#>
+        <a href="{blog.items.href}">
+        	<span class="blogRoot">
+            	
+                    <span class="text">
+                    	<h3>{blog.items.itemTitle}</h3>
+                        <#if:blog.blogID:eq:28688#><span class="date">{blog.items.displayDate}</span><#/if#>
+                        {blog.items.itemShortDescription:120:dots}
+                    </span>
+                    <span class="clear"></span>
+                     <span class="button">View</span>
+            </span>
+            </a>
+ 		<#/loop#>
+        <div class="clear"></div>
